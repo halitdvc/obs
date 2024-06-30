@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Öğrenci Güncelle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Öğrenci Bilgi Sistemi</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/yeniogr}">Yeni Öğrenci</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/obsGetirHepsi}">Öğrenci Listesi</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Ara</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<br/>
+<br/>
+<div class="container row col-md-5 offset-md-3">
+    <div class="card">
+        <div class="card-header">
+            <h3>Öğrenci Güncelleme Formu</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" role="form" th:action="@{/ogrenciler/{id}(id=${ogrenci.num})}" th:object="${ogrenci}">
+                <div>
+                    <table>
+                        <tr>
+                            <td><strong><label>Ad</label></strong> </td>
+                            <td><input id="ad" name="ad" placeholder="Adı Giriniz" type="text" th:field="*{ad}"></td>
+                            <td><p th:if="${#fields.hasErrors('ad')}" class="text-danger" th:errors="*{ad}"></p></td>
+                        </tr>
+                        <tr>
+                            <td><strong><label>Soyad</label></strong> </td>
+                            <td><input id="soyad" name="soyad" placeholder="Soyadı Giriniz" type="text" th:field="*{soyad}"></td>
+                            <td><p th:if="${#fields.hasErrors('soyad')}" class="text-danger" th:errors="*{soyad}"></p></td>
+                        </tr>
+                        <tr>
+                            <td><strong><label>Yaş</label></strong> </td>
+                            <td><input id="yas" name="yas" placeholder="Yaşı Giriniz" type="text" th:field="*{yas}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <br/>
+                <button class="btn btn-primary" type="submit">Güncelle</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
